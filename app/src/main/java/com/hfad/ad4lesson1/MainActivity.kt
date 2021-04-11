@@ -43,6 +43,5 @@ class MainActivity : AppCompatActivity() {
 
     private fun showMessage() {
         Toast.makeText(this, "Field cannot be empty", Toast.LENGTH_SHORT).show()
-        Log.e("TAG", "showMessage:  field is empty")
     }
 }

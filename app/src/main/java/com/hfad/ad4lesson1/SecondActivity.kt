@@ -19,7 +19,6 @@ class SecondActivity : AppCompatActivity() {
         data?.let { ui.editText.setText(data) }
 
         ui.button.setOnClickListener {
-
             if (!ui.editText.text.isNullOrBlank()) {
 
                 val intent = Intent()
@@ -40,6 +39,5 @@ class SecondActivity : AppCompatActivity() {
 
     private fun showMessage() {
         Toast.makeText(this, "Field cannot be empty", Toast.LENGTH_SHORT).show()
-        Log.e("TAG", "showMessage:  field is empty")
     }
 }
