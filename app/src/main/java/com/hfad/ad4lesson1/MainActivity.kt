@@ -3,8 +3,6 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -24,24 +22,25 @@ class MainActivity : AppCompatActivity() {
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
                 if (result.resultCode == Activity.RESULT_OK) {
                     val intent = result.data
-                    ui.editText.setText(intent?.getStringExtra("res"))
+                    ui.editText.setText(intent?.getStringExtra(KEY_RES))
                 }
             }
 
-        ui.button.setOnClickListener{
-            if (!ui.editText.text.isNullOrBlank()){
+        ui.textView.invisible()
 
-                val intent = Intent(this, SecondActivity::class.java)
-                intent.putExtra("res", ui.editText.text?.toString())
-                startForResult.launch(intent)
+        ui.button.setOnClickListener {
+            if (!ui.editText.text.isNullOrBlank()) {
+
+                startForResult.launch(Intent(this@MainActivity, SecondActivity::class.java)
+                    .putExtra(KEY_RES, ui.editText.text?.toString()))
 
             } else {
-                showMessage()
+                showMessage("Well this is the first activity")
             }
         }
     }
 
-    private fun showMessage() {
-        Toast.makeText(this, "Field cannot be empty", Toast.LENGTH_SHORT).show()
+    companion object {
+        const val KEY_RES = "res"
     }
 }

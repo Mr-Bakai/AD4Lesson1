@@ -3,8 +3,6 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import com.hfad.ad4lesson1.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity() {
@@ -15,19 +13,17 @@ class SecondActivity : AppCompatActivity() {
         ui = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(ui.root)
 
-        val data: String? = intent.getStringExtra("res").toString()
+        val data: String? = intent.getStringExtra(MainActivity.KEY_RES).toString()
         data?.let { ui.editText.setText(data) }
 
         ui.button.setOnClickListener {
             if (!ui.editText.text.isNullOrBlank()) {
 
-                val intent = Intent()
-                intent.putExtra("res", ui.editText.text?.toString())
-                setResult(Activity.RESULT_OK, intent)
+                setResult(Activity.RESULT_OK, Intent().putExtra(MainActivity.KEY_RES, ui.editText.text?.toString()))
                 finish()
 
             } else {
-                showMessage()
+                showMessage("This is the second activity")
             }
         }
     }
@@ -35,9 +31,5 @@ class SecondActivity : AppCompatActivity() {
     override fun onBackPressed() {
         setResult(Activity.RESULT_CANCELED)
         finish()
-    }
-
-    private fun showMessage() {
-        Toast.makeText(this, "Field cannot be empty", Toast.LENGTH_SHORT).show()
     }
 }
