@@ -23,7 +23,7 @@ class SecondActivity : AppCompatActivity() {
                 finish()
 
             } else {
-                showMessage("This is the second activity")
+                showMessage("Type something in order to send it")
             }
         }
     }

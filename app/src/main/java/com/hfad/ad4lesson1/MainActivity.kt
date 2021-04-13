@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                     .putExtra(KEY_RES, ui.editText.text?.toString()))
 
             } else {
-                showMessage("Well this is the first activity")
+                showMessage()
             }
         }
     }
